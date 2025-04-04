@@ -16,9 +16,9 @@ rules:
       function: truthy
 
   operation-summary:
-    description: "Each API operation should have a summary."
+    description: "Each operation should have a summary."
     severity: warning
-    given: "$.paths[*][*]"
+    given: "$.paths[*][get,post,put,delete,patch]"
     then:
       field: "summary"
       function: truthy
@@ -29,3 +29,28 @@ rules:
     given: "$.components.schemas.*"
     then:
       function: unreferenced
+
+  missing-tags:
+    description: "Each operation should include tags."
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: "tags"
+      function: truthy
+
+  operation-operationId-naming:
+    description: "operationId should follow camelCase."
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z]+([A-Z][a-z0-9]+)*$"
+
+  response-description:
+    description: "Each response must include a description."
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch].responses[*]"
+    then:
+      field: "description"
+      function: truthy
