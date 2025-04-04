@@ -1,100 +1,58 @@
-# **API Governance Project**  
+# 🛡️ OWASP API Governance
 
-Welcome to the **API Governance Project**, an open-source initiative focused on improving the **quality, consistency, and compliance** of APIs. This project leverages the **AML Modeling Framework (AMF)** to efficiently **parse, generate, and validate** API specifications, ensuring robust API governance and adherence to industry standards.  
-
-## 🚀 **Features**  
-
-✔ **Comprehensive API Specification Parsing**  
-- Supports **RAML, OpenAPI (OAS) 2.0/3.0, AsyncAPI 2.0, JSON-LD (AMF model)**  
-- Transforms API specifications into a structured metadata graph  
-
-✔ **Validation and Compliance**  
-- Ensures APIs adhere to **best practices** and **organization-wide policies**  
-- Identifies inconsistencies and enforces compliance with defined API standards  
-
-✔ **Extensible & Scalable**  
-- Supports **custom AML-defined models** for extending API governance  
-- Plugin-based system to add support for additional formats  
+A lightweight project for enforcing API governance using Spectral. It ensures your OpenAPI specifications follow best practices, consistent naming conventions, and organization-wide rules.
 
 ---
 
-## 📖 **Getting Started**  
+## 🚀 Features
 
-1️⃣ Prerequisites  
-Before setting up the project, ensure you have:  
-- **Node.js** (v16 or later)  
-- **npm** or **yarn**  
-- **Git**  
+- ✅ Lint OpenAPI 2.0 & 3.0 specs
+- ✅ Custom governance rules with Spectral
+- ✅ Naming conventions, summaries, tags, and more
+- ✅ Optimized with compiled rulesets
+- ✅ GitHub Actions support for CI linting
 
-2️⃣ Installation  
-Clone the repository and install dependencies:  
+---
+
+## 📁 Project Structure
+
+api-governance/ ├── .spectral.yaml # Main ruleset config ├── compiled-ruleset.json # Compiled version (faster linting) ├── governance-rules/ # Custom rule files │ ├── governance-rules.yaml │ ├── naming-conventions.yaml │ └── functions/ ├── specs/ # Sample OpenAPI specs ├── docs/ # Documentation ├── .github/workflows/ # GitHub CI │ └── lint-api.yml ├── package.json └── README.md
+
+
+---
+
+## 🧪 Linting Commands
+
+Install dependencies:
+
 ```bash
-git clone https://github.com/Naman8kumar/www-project-api-governance.git
-cd api-governance
-npm install  # or yarn install
-```
+npm install
 
-3️⃣ Running the Project  
-To start the API Governance framework, use:  
-```bash
-npm start
-```
-This initializes the governance tools, allowing interaction with API validation features.
+Compile ruleset:
+npm run lint:compile
 
-4️⃣ API Linting  
-To ensure API specifications follow best practices, run:  
-```bash
+Lint all API specs:
 npm run lint:api
-```
 
-📂 Project Structure  
-```
-api-governance/
-│── assets/           
-│── docs/                  # 📄 Documentation  
-│   ├── validation.md      # API Validation Rules  
-│── .spectral.yaml         # 🔧 Linting Configuration  
-│── api-governance-config.json  # 🔧 Custom Governance Config  
-│── README.md              
-│── CONTRIBUTING.md       
-│── LICENSE.md            
-│── SECURITY.md            
-│── _config.yml            
-```
+Lint a single API spec:
+npx spectral lint -r compiled-ruleset.json specs/example-api.yaml
 
-🤝 Contributing  
-We welcome contributions! Follow these steps:
+🤝 Contributing
+Fork this repo
 
-1️⃣ Fork the Repository  
-Click the Fork button on GitHub.  
+Create a new branch
 
-2️⃣ Clone Your Fork  
-```bash
-git clone https://github.com/your-username/www-project-api-governance.git
-cd www-project-api-governance
-```
+Make changes
 
-3️⃣ Create a New Branch  
-```bash
-git checkout -b feature-branch
-```
+Run npm run lint:compile and npm run lint:api
 
-4️⃣ Make Your Changes & Commit  
-```bash
-git add .
-git commit -m "Added feature XYZ"
-```
+Submit a PR 🎉
 
-5️⃣ Push to GitHub & Submit a PR  
-```bash
-git push origin feature-branch
-```
+📜 License
+Apache 2.0 License
 
-Then, open a Pull Request (PR) on GitHub and describe your changes.
+🔗 Resources
 
-📜 License  
-This project is licensed under the Apache 2.0 License. See LICENSE.md for details.
+OWASP API Security
+Spectral Documentation
 
-🔗 Resources & Documentation  
-- AML Modeling Framework (AMF)  
-- OWASP Official Site

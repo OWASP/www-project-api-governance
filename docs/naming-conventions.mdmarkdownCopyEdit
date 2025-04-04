@@ -1,0 +1,17 @@
+# Naming Conventions for API Specs
+
+This document outlines the naming conventions enforced across API specifications.
+
+## ✅ Enforced Rules
+
+### 1. Parameter Naming
+- All parameter names must be in kebab-case.
+- Example: `user-id`, `start-date`
+
+### 2. Path Segment Naming
+- API path segments must be in kebab-case or path params.
+- Example: `/user-profile/{user-id}`
+
+### 3. Response Descriptions
+- Descriptions must start with a capital letter.
+- Example: `"Successful operation"` ✅ vs `"successful operation"` ❌
