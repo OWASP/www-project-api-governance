@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: Weather Info API
+  version: 1.0.0
+  contact:
+    name: Weather Support
+    email: help@weatherapi.example.com
+paths:
+  /weather:
+    get:
+      summary: Get current weather
+      operationId: getWeather
+      tags:
+        - weather
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Weather details
+components:
+  schemas:
+    WeatherResponse:
+      type: object
+      properties:
+        temperature:
+          type: string
+        condition:
+          type: string
