@@ -1,8 +1,10 @@
-extends: ["spectral:oas", "governance-rules/governance-rules.yaml"]
+extends:
+  - "spectral:oas"
+  - "./governance-rules/governance-rules.yaml"
 
 rules:
   info-contact:
-    description: "Info object should contain a contact field."
+    description: "The API info object must include a contact field for better support traceability."
     severity: warning
     given: "$.info"
     then:
@@ -10,7 +12,7 @@ rules:
       function: truthy
 
   operation-summary:
-    description: "Each API operation should have a summary."
+    description: "Each API operation must have a summary to improve documentation."
     severity: warning
     given: "$.paths[*][*]"
     then:
@@ -18,22 +20,31 @@ rules:
       function: truthy
 
   unused-component:
-    description: "Remove unused components from the API spec."
+    description: "Remove unused schemas/components to keep the spec clean."
     severity: info
     given: "$.components.schemas.*"
     then:
       function: unreferenced
 
   missing-tags:
-    description: "Operations should include a 'tags' field for better categorization."
+    description: "Each operation should include a 'tags' field for logical grouping."
     severity: error
     given: "$.paths[*][*]"
     then:
       field: "tags"
       function: truthy
 
+  operation-operationId-naming:
+    description: "Enforce camelCase naming convention for operationId."
+    severity: error
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z]+([A-Z][a-z0-9]+)*$"
+
 formats:
   - oas2
   - oas3
 
-functionsDir: governance-rules/functions
+functionsDir: "./governance-rules/functions"

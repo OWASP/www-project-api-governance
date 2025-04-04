@@ -1,0 +1,27 @@
+rules:
+  param-name-kebab-case:
+    description: "Parameter names should be in kebab-case."
+    severity: warning
+    given: "$.paths[*][*].parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z]+(-[a-z]+)*$"
+
+  path-name-kebab-case:
+    description: "Path segments should be in kebab-case."
+    severity: warning
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/([a-z]+(-[a-z]+)*|{[^}]+}))*$"
+
+  response-description-sentence-case:
+    description: "Response descriptions should start with a capital letter."
+    severity: info
+    given: "$.paths[*][*].responses[*].description"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z].*"
