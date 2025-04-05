@@ -1,0 +1,11 @@
+module.exports = (targetVal) => {
+  if (!targetVal || typeof targetVal !== 'object') return;
+
+  if (!targetVal.contact) {
+    return [
+      {
+        message: "The 'info' object must include a 'contact' field."
+      }
+    ];
+  }
+};

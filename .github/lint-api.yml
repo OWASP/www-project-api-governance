@@ -1,0 +1,23 @@
+name: Lint API Specs
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'specs/**/*.yaml'
+      - 'specs/**/*.yml'
+      - 'specs/**/*.json'
+      - '.spectral.yaml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Spectral Linter
+        uses: stoplight/spectral-action@v0.8.8
+        with:
+          file_glob: 'specs/**/*.{yaml,yml,json}'

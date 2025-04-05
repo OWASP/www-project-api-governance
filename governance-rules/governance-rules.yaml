@@ -1,31 +1,15 @@
 rules:
-  openapi-version:
-    description: "OpenAPI specification must include a version."
-    severity: error
-    given: "$"
+  operation-description-required:
+    description: "Each operation should have a non-empty description."
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
     then:
-      field: "openapi"
+      field: description
       function: truthy
 
-  api-contact:
-    description: "API specifications should include a contact field."
-    severity: warning
-    given: "$.info"
+  tag-defined:
+    description: "Tags used in operations must be defined in the global tags array."
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
     then:
-      field: "contact"
-      function: truthy
-
-  operation-summary:
-    description: "Each API operation should have a summary."
-    severity: warning
-    given: "$.paths[*][*]"
-    then:
-      field: "summary"
-      function: truthy
-
-  unused-component:
-    description: "Unused components should be removed."
-    severity: info
-    given: "$.components.schemas.*"
-    then:
-      function: unreferenced
+      function: defined-tags
