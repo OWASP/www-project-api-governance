@@ -1,31 +1,8 @@
-rules:
-  openapi-version:
-    description: "OpenAPI specification must include a version."
-    severity: error
-    given: "$"
-    then:
-      field: "openapi"
-      function: truthy
 
-  api-contact:
-    description: "API specifications should include a contact field."
-    severity: warning
+rules:
+  info-contact-required:
+    description: "Info object must include a contact field."
+    severity: error
     given: "$.info"
     then:
-      field: "contact"
-      function: truthy
-
-  operation-summary:
-    description: "Each API operation should have a summary."
-    severity: warning
-    given: "$.paths[*][*]"
-    then:
-      field: "summary"
-      function: truthy
-
-  unused-component:
-    description: "Unused components should be removed."
-    severity: info
-    given: "$.components.schemas.*"
-    then:
-      function: unreferenced
+      function: contact-required

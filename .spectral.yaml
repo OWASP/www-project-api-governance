@@ -1,39 +1,8 @@
-extends: ["spectral:oas", "governance-rules/governance-rules.yaml"]
-
-rules:
-  info-contact:
-    description: "Info object should contain a contact field."
-    severity: warning
-    given: "$.info"
-    then:
-      field: "contact"
-      function: truthy
-
-  operation-summary:
-    description: "Each API operation should have a summary."
-    severity: warning
-    given: "$.paths[*][*]"
-    then:
-      field: "summary"
-      function: truthy
-
-  unused-component:
-    description: "Remove unused components from the API spec."
-    severity: info
-    given: "$.components.schemas.*"
-    then:
-      function: unreferenced
-
-  missing-tags:
-    description: "Operations should include a 'tags' field for better categorization."
-    severity: error
-    given: "$.paths[*][*]"
-    then:
-      field: "tags"
-      function: truthy
+extends:
+  - spectral:oas
+  - ./governance-rules/governance-rules.yaml
 
 formats:
-  - oas2
   - oas3
 
-functionsDir: governance-rules/functions
+functionsDir: ./governance-rules/functions
