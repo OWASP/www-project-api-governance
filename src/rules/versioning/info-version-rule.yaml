@@ -1,0 +1,8 @@
+description: "OpenAPI info.version must follow semantic versioning (x.y.z)"
+message: "info.version must follow semantic versioning (e.g., 1.0.0)"
+severity: error
+given: "$.info.version"
+then:
+  function: pattern
+  functionOptions:
+    match: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
