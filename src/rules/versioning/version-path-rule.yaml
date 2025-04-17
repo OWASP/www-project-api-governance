@@ -1,0 +1,8 @@
+description: "API paths must start with a version prefix like /v1/"
+message: "Path must start with a version like /v1/"
+severity: error
+given: "$.paths[*]~"
+then:
+  function: pattern
+  functionOptions:
+    match: "^/v[0-9]+/"
