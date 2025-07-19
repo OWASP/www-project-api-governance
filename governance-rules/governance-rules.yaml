@@ -1,8 +1,22 @@
-
+extends: []
 rules:
-  info-contact-required:
-    description: "Info object must include a contact field."
+  versioning-path-prefix:
+    description: "API paths must start with a version prefix like /v1/"
+    message: "Path must start with a version like /v1/"
     severity: error
-    given: "$.info"
+    given: "$.paths[*]~"
     then:
-      function: contact-required
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]+/"
+  
+  versioning-info-field:
+    description: "OpenAPI info.version must follow semantic versioning (x.y.z)"
+    message: "info.version must follow semantic versioning (e.g., 1.0.0)"
+    severity: error
+    given: "$.info.version"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+
